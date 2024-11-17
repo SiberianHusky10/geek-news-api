@@ -32,4 +32,4 @@ jobs:
 
       - name: Restart Api
         run: |
-          docker compose -f /root/big-event/docker-compose.yaml up -d --force-recreate big-event-api
+          docker compose -f /app/docker-compose.yaml up -d --force-recreate big-event-api
