@@ -1,11 +1,15 @@
 name: Build API
 
 on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -18,18 +22,18 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.PACKAGE_TOKEN }}
+          password: ${{ secrets.BIG_EVENT_WEBCODE_TOKEN4 }}
 
       - name: Build and tag image
         run: |
-          docker build . --tag ghcr.io/husky2025/big-event-api:$TIMESTAMP
-          docker tag ghcr.io/husky2025/big-event-api:$TIMESTAMP ghcr.io/husky2025/big-event-api:latest
+          docker build . --tag ghcr.io/siberianhusky10/big-event-api:$TIMESTAMP
+          docker tag ghcr.io/siberianhusky10/big-event-api:$TIMESTAMP ghcr.io/siberianhusky10/big-event-api:latest
 
       - name: Push image to GitHub Container Registry
         run: |
-          docker push ghcr.io/husky2025/big-event-api:$TIMESTAMP
-          docker push ghcr.io/husky2025/big-event-api:latest
+          docker push ghcr.io/siberianhusky10/big-event-api:$TIMESTAMP
+          docker push ghcr.io/siberianhusky10/big-event-api:latest
 
-      - name: Restart Api
-        run: |
-          docker compose -f /app/docker-compose.yaml up -d --force-recreate big-event-api
+#      - name: Restart Api
+#        run: |
+#          docker compose -f /app/docker-compose.yaml up -d --force-recreate big-event-api
