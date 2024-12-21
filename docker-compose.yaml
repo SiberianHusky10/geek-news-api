@@ -2,7 +2,7 @@ services:
   # The big-event-api service.
   big-event-api:
     container_name: big-event-api
-    image: ghcr.io/husky2025/big-event-api:latest
+    image: ghcr.io/siberianhusky10/big-event-api:latest
     restart: always
     environment:
       DB_PASSWORD: ${DB_PASSWORD}
@@ -53,6 +53,16 @@ services:
       - "${EXPOSE_REDIS_PORT:-6379}:6379"
     healthcheck:
       test: [ "CMD", "redis-cli", "ping" ]
+    networks:
+      - my_network
+
+  # The big-event-web app.
+  web:
+    container_name: big-event-webcode
+    image: ghcr.io/siberianhusky10/big-event-web:latest
+    restart: always
+    ports:
+      - "80:80"
     networks:
       - my_network
 
