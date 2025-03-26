@@ -14,6 +14,9 @@ public interface ArticleMapper {
 
     List<Article> list(Integer userId, Integer categoryId, String state);
 
+    @Select("Select * from article order by create_time desc")
+    List<Article> listLatest();
+
     @Select("Select * from article where id = #{id}")
     Article findById(Integer id);
 

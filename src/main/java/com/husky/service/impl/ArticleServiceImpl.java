@@ -39,8 +39,13 @@ public class ArticleServiceImpl implements ArticleService {
         PageHelper.startPage(pageNum, pageSize);
         //调用mapper
         Map<String, Object> map = ThreadLocalUtil.get();
-        Integer userId = (Integer) map.get("id");
-        List<Article> as = articleMapper.list(userId, categoryId, state);
+        List<Article> as;
+        if (map == null) {
+            as = articleMapper.listLatest();
+        } else {
+            Integer userId = (Integer) map.get("id");
+            as = articleMapper.list(userId, categoryId, state);
+        }
 
         //page中提供了方法，可以获取PageHelper分页查询后得到的总记录条数和当前页数据
         Page<Article> p = (Page<Article>) as;
