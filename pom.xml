@@ -110,7 +110,7 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
         <version>3.3.3</version>
         <configuration>
-          <mainClass>com.husky.BigEventApplication</mainClass>
+          <mainClass>com.husky.GeekNewsApplication</mainClass>
         </configuration>
       </plugin>
       <plugin>

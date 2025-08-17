@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 @SpringBootApplication
-public class BigEventApplication
+public class GeekNewsApplication
 {
     public static void main( String[] args )
     {
-        SpringApplication.run(BigEventApplication.class, args);
+        SpringApplication.run(GeekNewsApplication.class, args);
     }
 }
